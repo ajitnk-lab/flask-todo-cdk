@@ -1,5 +1,5 @@
 {
-  "app": "python app.py",
+  "app": "python3 app.py",
   "watch": {
     "include": [
       "**"
@@ -38,8 +38,6 @@
     "@aws-cdk/aws-sns-subscriptions:restrictSqsDescryption": true,
     "@aws-cdk/aws-apigateway:disableCloudWatchRole": false,
     "@aws-cdk/core:enablePartitionLiterals": true,
-    "@aws-cdk/core:enableStackNameDuplicates": true,
-    "aws-cdk:enableDiffNoFail": true,
-    "@aws-cdk/core:stackRelativeExports": true
+    "aws-cdk:enableDiffNoFail": true
   }
 }
