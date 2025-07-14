@@ -1,20 +1,4 @@
-# Testing Framework
 pytest>=7.0.0
-pytest-cov>=4.0.0
-pytest-mock>=3.10.0
-
-# Code Formatting and Linting
 black>=22.0.0
 flake8>=5.0.0
-isort>=5.12.0
-
-# Type Checking
 mypy>=1.0.0
-types-boto3>=1.0.0
-
-# Development Tools
-pre-commit>=3.0.0
-bandit>=1.7.0  # Security linting
-
-# CDK Testing
-aws-cdk.assertions>=2.100.0
