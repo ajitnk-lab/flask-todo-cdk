@@ -15,20 +15,20 @@ app = cdk.App()
 # Development environment stack
 TodoStack(app, "FlaskTodoCdkDev",
     env=cdk.Environment(
-        account=app.node.try_get_context("account"),
-        region=app.node.try_get_context("region") or "us-east-1"
+        account=app.node.try_get_context("dev_account") or app.node.try_get_context("account"),
+        region=app.node.try_get_context("dev_region") or app.node.try_get_context("region") or "us-east-1"
     ),
     description="Flask Todo CDK Development Stack - Serverless todo app with Lambda, API Gateway, and DynamoDB"
 )
 
-# Production environment stack (commented out for now)
-# TodoStack(app, "FlaskTodoCdkProd",
-#     env=cdk.Environment(
-#         account=app.node.try_get_context("prod_account"),
-#         region=app.node.try_get_context("prod_region") or "us-east-1"
-#     ),
-#     description="Flask Todo CDK Production Stack"
-# )
+# Production environment stack
+TodoStack(app, "FlaskTodoCdkProd",
+    env=cdk.Environment(
+        account=app.node.try_get_context("prod_account") or app.node.try_get_context("account"),
+        region=app.node.try_get_context("prod_region") or app.node.try_get_context("region") or "us-east-1"
+    ),
+    description="Flask Todo CDK Production Stack - Serverless todo app with Lambda, API Gateway, and DynamoDB"
+)
 
 # Synthesize the CDK app
 app.synth()

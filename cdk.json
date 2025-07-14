@@ -40,6 +40,23 @@
     "@aws-cdk/core:enablePartitionLiterals": true,
     "@aws-cdk/core:enableStackNameDuplicates": true,
     "aws-cdk:enableDiffNoFail": true,
-    "@aws-cdk/core:stackRelativeExports": true
+    "@aws-cdk/core:stackRelativeExports": true,
+    
+    "region": "us-east-1",
+    "dev_region": "us-east-1",
+    "prod_region": "us-east-1",
+    
+    "dev_environment": {
+      "table_removal_policy": "DESTROY",
+      "billing_mode": "PAY_PER_REQUEST",
+      "point_in_time_recovery": true
+    },
+    "prod_environment": {
+      "table_removal_policy": "RETAIN",
+      "billing_mode": "PROVISIONED",
+      "read_capacity": 5,
+      "write_capacity": 5,
+      "point_in_time_recovery": true
+    }
   }
 }
