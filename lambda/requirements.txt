@@ -1,0 +1,24 @@
+# Flask Todo API Lambda Requirements
+
+# Core Flask framework
+Flask==2.3.3
+Werkzeug==2.3.7
+
+# CORS support for web frontend integration
+Flask-CORS==4.0.0
+
+# AWS SDK for DynamoDB integration
+boto3==1.34.144
+botocore==1.34.144
+
+# WSGI adapter for AWS Lambda
+serverless-wsgi==0.2.0
+
+# Additional utilities
+python-dateutil==2.8.2
+urllib3==1.26.18
+
+# Development and testing (optional)
+pytest==7.4.4
+pytest-flask==1.3.0
+moto==4.2.14  # For mocking AWS services in tests
