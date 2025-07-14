@@ -34,7 +34,7 @@ This project is being developed incrementally through a series of GitHub Issues,
 ### 🎯 Issue Series Progress
 
 - ✅ **Issue #1**: Project Foundation (COMPLETED)
-- ⏳ **Issue #2**: DynamoDB Infrastructure
+- ✅ **Issue #2**: DynamoDB Infrastructure (COMPLETED)
 - ⏳ **Issue #3**: Flask Application Core  
 - ⏳ **Issue #4**: Lambda Infrastructure
 - ⏳ **Issue #5**: API Gateway Integration
@@ -155,8 +155,14 @@ This project follows a GitHub Issues-driven development approach:
 - [x] Development environment setup
 - [x] Git repository initialization
 
+#### ✅ Completed (Issue #2)
+- [x] DynamoDB table implementation with partition key
+- [x] Global Secondary Index for status-based queries
+- [x] Environment-specific configurations (dev/prod)
+- [x] IAM permissions for Lambda access
+- [x] Table outputs for cross-stack references
+
 #### 🔄 In Progress
-- [ ] DynamoDB table implementation (Issue #2)
 - [ ] Flask application core (Issue #3)
 - [ ] Lambda function setup (Issue #4)
 - [ ] API Gateway configuration (Issue #5)
@@ -187,6 +193,40 @@ The Flask Todo API will provide the following endpoints (implemented in Issue #3
 - `GET /todos/{id}` - Get a specific todo
 - `PUT /todos/{id}` - Update a todo
 - `DELETE /todos/{id}` - Delete a todo
+
+## 🗄️ Database Schema
+
+The DynamoDB table has the following schema:
+
+### Todo Table
+- **Table Name**: `flask-todo-table-{env}` (where env is 'dev' or 'prod')
+- **Partition Key**: `todo_id` (String)
+- **Attributes**:
+  - `todo_id`: String (Primary Key)
+  - `title`: String (Required)
+  - `description`: String (Optional)
+  - `status`: String (Required) - Values: "pending", "completed", "archived"
+  - `created_at`: String (ISO 8601 timestamp)
+  - `updated_at`: String (ISO 8601 timestamp)
+  - `user_id`: String (Future use for multi-user support)
+
+### Global Secondary Index (GSI)
+- **GSI Name**: `StatusDateIndex`
+- **Partition Key**: `status` (String)
+- **Sort Key**: `created_at` (String)
+- **Purpose**: Query todos by status and sort by creation date
+
+### Environment-Specific Configurations
+- **Development**:
+  - Pay-per-request billing
+  - DESTROY removal policy
+  - Point-in-time recovery enabled
+  - AWS managed encryption
+- **Production**:
+  - Provisioned billing (5 RCU/WCU)
+  - RETAIN removal policy
+  - Point-in-time recovery enabled
+  - AWS managed encryption
 
 ## 🔍 Monitoring and Logging
 
