@@ -14,7 +14,16 @@ fi
 
 # Install dependencies
 echo "Installing dependencies..."
-pip install -r requirements.txt
+# Install dependencies
+echo "Installing dependencies..."
+if [ -f "requirements.txt" ]; then
+    pip install -r requirements.txt
+else
+    echo "requirements.txt not found. Skipping dependency installation."
+fi
+
+# Deploy with CDK
+echo "Deploying with CDK..."
 
 # Deploy with CDK
 echo "Deploying with CDK..."
